@@ -15,7 +15,7 @@
             left: 0;
             width: 100%;
             padding: 20px 0;
-            background-color: #000;
+            background-color: rgba(0, 0, 0, 0.7);
             color: white;
             z-index: 1000;
             font-family: sans-serif;
@@ -45,7 +45,7 @@
         }
         
         .header-nav a.active {
-            color: #007bff;
+            color: #00bfff;
             font-weight: bold;
         }
 
@@ -63,20 +63,30 @@
             text-align: center;
         }
 
+        .link-container {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+            max-width: 300px;
+            text-align: left;
+        }
+
         .link-list {
             list-style: none;
             padding: 0;
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
         .link-list a {
-            color: #007bff;
+            color: #00bfff;
             text-decoration: none;
             font-size: 18px;
             margin: 5px 0;
             display: block;
         }
-
     </style>
 </head>
 <body>
@@ -98,24 +108,28 @@
     <div id="about-me" class="section" style="background-image: url('about-me.png');"></div>
 
     <div id="proyek" class="section" style="background-image: url('proyek-1.png');">
-        <h1>Proyek</h1>
-        <ul class="link-list">
-            <li><a href="https://github.com/agitya17/wimaya_hotel" target="_blank">wimaya_hotel</a></li>
-            <li><a href="https://github.com/kaynnsc/Project-Kelompok-Web-Lanjut" target="_blank">Project-Kelompok-Web-Lanjut</a></li>
-            <li><a href="https://github.com/agitya17/DoaIslamHarian" target="_blank">DoaIslamHarian</a></li>
-            <li><a href="https://github.com/agitya17/endemikdb" target="_blank">endemikdb</a></li>
-            <li><a href="https://github.com/agitya17/alquran_app" target="_blank">alquran_app</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1atJOm8QES7ZHiskah4QQ1Xwocrq6C3kS" target="_blank">Google Drive Folder</a></li>
-        </ul>
+        <div class="link-container">
+            <h2 style="margin: 0; font-size: 20px; color: white;">Proyek</h2>
+            <ul class="link-list">
+                <li><a href="https://github.com/agitya17/wimaya_hotel" target="_blank">wimaya_hotel</a></li>
+                <li><a href="https://github.com/kaynnsc/Project-Kelompok-Web-Lanjut" target="_blank">Project-Kelompok-Web-Lanjut</a></li>
+                <li><a href="https://github.com/agitya17/DoaIslamHarian" target="_blank">DoaIslamHarian</a></li>
+                <li><a href="https://github.com/agitya17/endemikdb" target="_blank">endemikdb</a></li>
+                <li><a href="https://github.com/agitya17/alquran_app" target="_blank">alquran_app</a></li>
+                <li><a href="https://drive.google.com/drive/folders/1atJOm8QES7ZHiskah4QQ1Xwocrq6C3kS" target="_blank">Google Drive Folder</a></li>
+            </ul>
+        </div>
     </div>
     
     <div id="artikel" class="section" style="background-image: url('penerbitan-artikel1.png');">
-        <h1>Penerbitan Artikel Ilmiah</h1>
-        <ul class="link-list">
-            <li><a href="https://conference.upnvj.ac.id/index.php/senamika/article/view/2881/2059" target="_blank">Link Artikel 1</a></li>
-            <li><a href="https://conference.upnvj.ac.id/index.php/senamika/article/view/3130/2107" target="_blank">Link Artikel 2</a></li>
-            <li><a href="https://conference.upnvj.ac.id/index.php/senamika/article/view/3125/2106" target="_blank">Link Artikel 3</a></li>
-        </ul>
+        <div class="link-container">
+            <h2 style="margin: 0; font-size: 20px; color: white;">Penerbitan Artikel</h2>
+            <ul class="link-list">
+                <li><a href="https://conference.upnvj.ac.id/index.php/senamika/article/view/2881/2059" target="_blank">Link Artikel 1</a></li>
+                <li><a href="https://conference.upnvj.ac.id/index.php/senamika/article/view/3130/2107" target="_blank">Link Artikel 2</a></li>
+                <li><a href="https://conference.upnvj.ac.id/index.php/senamika/article/view/3125/2106" target="_blank">Link Artikel 3</a></li>
+            </ul>
+        </div>
     </div>
     
     <div id="skill" class="section" style="background-image: url('skill-1.png');"></div>
@@ -124,14 +138,6 @@
     <script>
         const navLinks = document.querySelectorAll('.header-nav a');
         const sections = document.querySelectorAll('.section');
-        const sectionMapping = {
-            'utama': ['utama'],
-            'about-me': ['about-me'],
-            'proyek': ['proyek'],
-            'artikel': ['artikel'],
-            'skill': ['skill'],
-            'contact': ['contact']
-        };
 
         window.addEventListener('scroll', () => {
             let current = '';
