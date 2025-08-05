@@ -6,40 +6,133 @@
         body, html {
             margin: 0;
             padding: 0;
+            scroll-behavior: smooth;
         }
 
         .header {
-            position: fixed; /* Ini yang membuat header tetap di tempat */
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100px; /* Atur tinggi header sesuai kebutuhan */
-            background-color: rgba(0, 0, 0, 0.7); /* Latar belakang header semi-transparan */
+            padding: 20px 0;
+            background-color: #000;
             color: white;
-            z-index: 1000; /* Memastikan header berada di lapisan paling atas */
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            z-index: 1000;
             font-family: sans-serif;
             text-align: center;
         }
 
-        .content {
-            margin-top: 100px; /* Sesuaikan dengan tinggi header */
-            background-image: url('portofolio-agitya.jpg'); /* Ganti dengan nama file gambar Anda */
-            background-attachment: fixed; /* Ini adalah efek paralaks */
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-name {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .header-nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+        
+        .header-nav a.active {
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .section {
+            height: 100vh;
             background-size: cover;
-            background-position: top center;
-            height: 5000px; /* Atur tinggi konten agar bisa digulir */
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>Agitya Arum Falysa</h1>
+        <div class="header-content">
+            <div class="header-name">Agitya Arum Falysa</div>
+            <div class="header-nav">
+                <a href="#utama" class="active">Utama</a>
+                <a href="#about-me">About Me</a>
+                <a href="#proyek">Proyek</a>
+                <a href="#penerbitan">Artikel</a>
+                <a href="#skill">Skill</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
     </div>
 
-    <div class="content">
-        </div>
+    <div id="utama" class="section" style="background-image: url('halaman-utama.png');"></div>
+    <div id="about-me" class="section" style="background-image: url('about-me.png');"></div>
+
+    <div id="proyek-1" class="section" style="background-image: url('proyek-1.png');"></div>
+    <div id="proyek-2" class="section" style="background-image: url('proyek-2.png');"></div>
+    <div id="proyek-3" class="section" style="background-image: url('proyek-3.png');"></div>
+    <div id="proyek-4" class="section" style="background-image: url('proyek-4.png');"></div>
+    <div id="proyek-5" class="section" style="background-image: url('proyek-5.png');"></div>
+    
+    <div id="penerbitan-artikel-1" class="section" style="background-image: url('penerbitan-artikel1.png');"></div>
+    <div id="penerbitan-artikel-2" class="section" style="background-image: url('penerbitan-artikel2.png');"></div>
+    <div id="penerbitan-artikel-3" class="section" style="background-image: url('penerbitan-artikel3.png');"></div>
+    <div id="penerbitan-artikel-4" class="section" style="background-image: url('penerbitan-artikel4.png');"></div>
+    
+    <div id="skill-1" class="section" style="background-image: url('skill-1.png');"></div>
+    
+    <div id="contact" class="section" style="background-image: url('contact.png');"></div>
+
+    <script>
+        const navLinks = document.querySelectorAll('.header-nav a');
+        const sections = document.querySelectorAll('.section');
+        const sectionMapping = {
+            'utama': ['utama'],
+            'about-me': ['about-me'],
+            'proyek': ['proyek-1', 'proyek-2', 'proyek-3', 'proyek-4', 'proyek-5'],
+            'penerbitan': ['penerbitan-artikel-1', 'penerbitan-artikel-2', 'penerbitan-artikel-3', 'penerbitan-artikel-4'],
+            'skill': ['skill-1'],
+            'contact': ['contact']
+        };
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+
+            for (const key in sectionMapping) {
+                const sectionIds = sectionMapping[key];
+                const lastSectionId = sectionIds[sectionIds.length - 1];
+                const lastSection = document.getElementById(lastSectionId);
+
+                if (lastSection && window.scrollY >= lastSection.offsetTop - 200) {
+                    current = key;
+                }
+            }
+
+            if (!current) {
+                const firstSection = document.getElementById('utama');
+                if (firstSection && window.scrollY < firstSection.offsetTop) {
+                    current = 'utama';
+                }
+            }
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
