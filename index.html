@@ -50,7 +50,7 @@
         }
 
         .section {
-            height: 100vh;
+            min-height: 100vh;
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -58,7 +58,25 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
+            padding-top: 80px;
+            text-align: center;
         }
+
+        .link-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .link-list a {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 18px;
+            margin: 5px 0;
+            display: block;
+        }
+
     </style>
 </head>
 <body>
@@ -69,7 +87,7 @@
                 <a href="#utama" class="active">Utama</a>
                 <a href="#about-me">About Me</a>
                 <a href="#proyek">Proyek</a>
-                <a href="#penerbitan">Artikel</a>
+                <a href="#artikel">Artikel</a>
                 <a href="#skill">Skill</a>
                 <a href="#contact">Contact</a>
             </div>
@@ -79,19 +97,28 @@
     <div id="utama" class="section" style="background-image: url('halaman-utama.png');"></div>
     <div id="about-me" class="section" style="background-image: url('about-me.png');"></div>
 
-    <div id="proyek-1" class="section" style="background-image: url('proyek-1.png');"></div>
-    <div id="proyek-2" class="section" style="background-image: url('proyek-2.png');"></div>
-    <div id="proyek-3" class="section" style="background-image: url('proyek-3.png');"></div>
-    <div id="proyek-4" class="section" style="background-image: url('proyek-4.png');"></div>
-    <div id="proyek-5" class="section" style="background-image: url('proyek-5.png');"></div>
+    <div id="proyek" class="section" style="background-image: url('proyek-1.png');">
+        <h1>Proyek</h1>
+        <ul class="link-list">
+            <li><a href="https://github.com/agitya17/wimaya_hotel" target="_blank">wimaya_hotel</a></li>
+            <li><a href="https://github.com/kaynnsc/Project-Kelompok-Web-Lanjut" target="_blank">Project-Kelompok-Web-Lanjut</a></li>
+            <li><a href="https://github.com/agitya17/DoaIslamHarian" target="_blank">DoaIslamHarian</a></li>
+            <li><a href="https://github.com/agitya17/endemikdb" target="_blank">endemikdb</a></li>
+            <li><a href="https://github.com/agitya17/alquran_app" target="_blank">alquran_app</a></li>
+            <li><a href="https://drive.google.com/drive/folders/1atJOm8QES7ZHiskah4QQ1Xwocrq6C3kS" target="_blank">Google Drive Folder</a></li>
+        </ul>
+    </div>
     
-    <div id="penerbitan-artikel-1" class="section" style="background-image: url('penerbitan-artikel1.png');"></div>
-    <div id="penerbitan-artikel-2" class="section" style="background-image: url('penerbitan-artikel2.png');"></div>
-    <div id="penerbitan-artikel-3" class="section" style="background-image: url('penerbitan-artikel3.png');"></div>
-    <div id="penerbitan-artikel-4" class="section" style="background-image: url('penerbitan-artikel4.png');"></div>
+    <div id="artikel" class="section" style="background-image: url('penerbitan-artikel1.png');">
+        <h1>Penerbitan Artikel Ilmiah</h1>
+        <ul class="link-list">
+            <li><a href="https://conference.upnvj.ac.id/index.php/senamika/article/view/2881/2059" target="_blank">Link Artikel 1</a></li>
+            <li><a href="https://conference.upnvj.ac.id/index.php/senamika/article/view/3130/2107" target="_blank">Link Artikel 2</a></li>
+            <li><a href="https://conference.upnvj.ac.id/index.php/senamika/article/view/3125/2106" target="_blank">Link Artikel 3</a></li>
+        </ul>
+    </div>
     
-    <div id="skill-1" class="section" style="background-image: url('skill-1.png');"></div>
-    
+    <div id="skill" class="section" style="background-image: url('skill-1.png');"></div>
     <div id="contact" class="section" style="background-image: url('contact.png');"></div>
 
     <script>
@@ -100,31 +127,21 @@
         const sectionMapping = {
             'utama': ['utama'],
             'about-me': ['about-me'],
-            'proyek': ['proyek-1', 'proyek-2', 'proyek-3', 'proyek-4', 'proyek-5'],
-            'penerbitan': ['penerbitan-artikel-1', 'penerbitan-artikel-2', 'penerbitan-artikel-3', 'penerbitan-artikel-4'],
-            'skill': ['skill-1'],
+            'proyek': ['proyek'],
+            'artikel': ['artikel'],
+            'skill': ['skill'],
             'contact': ['contact']
         };
 
         window.addEventListener('scroll', () => {
             let current = '';
 
-            for (const key in sectionMapping) {
-                const sectionIds = sectionMapping[key];
-                const lastSectionId = sectionIds[sectionIds.length - 1];
-                const lastSection = document.getElementById(lastSectionId);
-
-                if (lastSection && window.scrollY >= lastSection.offsetTop - 200) {
-                    current = key;
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
                 }
-            }
-
-            if (!current) {
-                const firstSection = document.getElementById('utama');
-                if (firstSection && window.scrollY < firstSection.offsetTop) {
-                    current = 'utama';
-                }
-            }
+            });
 
             navLinks.forEach(link => {
                 link.classList.remove('active');
