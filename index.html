@@ -7,16 +7,39 @@
             margin: 0;
             padding: 0;
         }
-        img {
+
+        .header {
+            position: fixed; /* Ini yang membuat header tetap di tempat */
+            top: 0;
+            left: 0;
             width: 100%;
-            height: auto;
-            display: block;
+            height: 100px; /* Atur tinggi header sesuai kebutuhan */
+            background-color: rgba(0, 0, 0, 0.7); /* Latar belakang header semi-transparan */
+            color: white;
+            z-index: 1000; /* Memastikan header berada di lapisan paling atas */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: sans-serif;
+            text-align: center;
+        }
+
+        .content {
+            margin-top: 100px; /* Sesuaikan dengan tinggi header */
+            background-image: url('portofolio-agitya.jpg'); /* Ganti dengan nama file gambar Anda */
+            background-attachment: fixed; /* Ini adalah efek paralaks */
+            background-size: cover;
+            background-position: top center;
+            height: 5000px; /* Atur tinggi konten agar bisa digulir */
         }
     </style>
 </head>
 <body>
-    <img src="portofolio-agitya.jpg" alt="Portofolio Agitya">
+    <div class="header">
+        <h1>Agitya Arum Falysa</h1>
+    </div>
+
+    <div class="content">
+        </div>
 </body>
 </html>
-
-
